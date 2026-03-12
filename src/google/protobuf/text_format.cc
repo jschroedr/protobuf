@@ -1492,8 +1492,6 @@ class TextFormat::Printer::TextGenerator
     }
   }
 
-  bool failed() const override { return failed_; }
-
   // Indent text by two spaces.  After calling Indent(), two spaces will be
   // inserted at the beginning of each line of text.  Indent() may be called
   // multiple times to produce deeper indents.
@@ -1543,7 +1541,7 @@ class TextFormat::Printer::TextGenerator
   // True if any write to the underlying stream failed.  (We don't just
   // crash in this case because this is an I/O failure, not a programming
   // error.)
-  bool failed() const { return failed_; }
+  bool failed() const override { return failed_; }
 
   void PrintMaybeWithMarker(MarkerToken, absl::string_view text) override {
     Print(text.data(), text.size());
